@@ -1,0 +1,27 @@
+Title Lab_6
+INCLUDE Irvine32.inc
+
+.data
+	var DWORD 5	
+	x DWORD ?
+
+.code
+main PROC
+
+	mov ecx,6
+	mov edx,1
+	CMP var,ecx
+	JNL common
+	CMP ecx,edx
+	JNGE common
+	mov x,0
+	jmp f
+common:
+	mov x,1
+
+f:
+mov eax,x
+call writedec
+exit
+main ENDP
+END main

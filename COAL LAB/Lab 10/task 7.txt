@@ -1,0 +1,80 @@
+INCLUDE irvine32.inc
+.data
+	ARR BYTE 1,2,2,2,3,4,5,6,7,8,9
+	msg BYTE "Enter The Element : ",0
+	msg1 BYTE "NOT-FOUND!",0
+.code
+main PROC
+	mov esi,0
+	mov edi,0
+	mov eax,0
+	mov ebx,0
+	mov esi,0
+	mov edx,0
+	mov edx,OFFSET msg
+	call writestring
+	push OFFSET ARR
+	call readdec
+	push eax
+	push LENGTHOF ARR-1
+	call Binary_search
+exit
+main endp
+Binary_search PROC
+	push ebp
+	mov eax,0
+	mov ebp,esp
+	mov esi,[ebp+16]
+	mov dl,[ebp+12]
+	mov eax,[ebp+8]
+	cmp eax,LENGTHOF ARR
+	ja common1
+	cmp eax,edi
+	jb common1
+	sub eax,edi
+	shr eax,1
+	add eax,edi
+	add esi,eax
+	mov bl,[esi]
+	cmp dl,bl
+	ja greater
+	cmp dl,bl
+	je common
+	sub eax,1
+	mov esp,ebp
+	pop ebx
+	pop ebp
+	pop ebx
+	push eax
+	call Binary_search
+greater:
+	mov esp,ebp
+	pop ebx
+	pop ebp
+	pop ebx
+	mov edi,eax
+	add edi,1
+	push ebx
+	call Binary_search
+common1:
+	mov esp,ebp
+	pop ebx
+	pop ebp
+	mov edx,OFFSET msg1
+	call writestring
+	pop eax
+	pop eax
+    pop eax
+ret 12
+common:
+	mov esp,ebp
+	pop ebx
+	pop ebp
+	call writedec
+	call crlf
+	pop eax
+	pop eax
+    pop eax
+ret 12
+Binary_search endp
+end main

@@ -1,0 +1,16 @@
+This android app is basically been developed as a calculator with six arithematic functions.
+
+1 Addition
+
+2 Subtraction
+
+3 Multiplication
+
+4 Division
+
+5 mod (%)
+
+6 Power(^)
+ With two user inputs as first number (1st operand) and second number (2nd operand).
+
+After performing the operations on operands reasult is displayed in a seperate window with the label named Result.

@@ -1,0 +1,31 @@
+
+.686
+.MODEL FLAT,C
+.STACK 2048
+
+.data
+	
+.code
+asmPROC proc ,array1:DWORD
+	mov esi,array1
+	mov ecx,10
+l1:
+	mov esi,array1
+	push ecx
+	mov ecx,9
+	l2:
+		mov eax,[esi]
+		add esi,TYPE array1
+		cmp [esi],eax
+		jge  common
+		mov ebx,[esi]
+		mov [esi],eax
+		mov [esi-TYPE array1],ebx
+	common:
+	loop l2
+	pop ecx
+loop l1
+	
+ret 
+asmPROC ENDP
+END

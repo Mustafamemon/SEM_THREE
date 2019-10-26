@@ -1,0 +1,32 @@
+Title Lab_6
+INCLUDE Irvine32.inc
+
+.data
+	msg1 BYTE "NOT EQUAL!",0
+	msg2 BYTE "EQUAL!",0
+
+.code
+main PROC
+	mov ecx,4
+l1:
+	call readint
+	push eax
+loop l1
+	mov ecx,4
+l2:
+	mov eax,[esp]
+	CMP eax,[esp+4]
+	JNE common
+	sub esi,4
+loop l2
+	mov edx,OFFSET msg2
+	call writeString
+	call crlf
+exit
+common:
+	mov edx,OFFSET msg1
+	call writeString
+	call crlf
+exit
+main ENDP
+END main

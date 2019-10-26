@@ -1,0 +1,55 @@
+include irvine32.inc
+
+.data
+	ARRAY WORD 81,2,10,62,82,52,11,61,15,21,61,31,25,65,89,38,58,50,55,54,144
+	MSG BYTE "MAX value in the ARRAY is : ",0
+	MSG1 BYTE "MIN value in the ARRAY is : ",0
+.code
+main PROC
+	MOV eax,0
+	MOV ebx,0
+	MOV ecx,0
+	MOV edx,0 
+	MOV esi,0
+	push offset ARRAY
+	push lengthof ARRAY
+	call MINMAXARRAY
+
+exit
+main endp
+
+MINMAXARRAY proc
+	push ebp
+	MOV ebp,esp
+	MOV esi,[ebp+12]
+	MOV ecx,[ebp+8]
+	mov eax,0
+l1:
+	cmp ax,[esi]
+	ja l
+		mov ax,[esi]
+	l:
+		add esi,2
+loop l1
+	mov edx,OFFSET MSG
+	call writestring
+	call writedec
+	MOV esi,[ebp+12]
+	MOV ecx,[ebp+8]
+l2:
+	cmp ax,[esi]
+	jb l3
+		mov ax,[esi]
+	l3:
+		add esi,2
+loop l2
+	call crlf
+	mov edx,OFFSET MSG1
+	call writestring
+	call writedec
+	call crlf
+	mov esp,ebp
+	pop ebp
+ret 12
+MINMAXARRAY endp
+end main

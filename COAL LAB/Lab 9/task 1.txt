@@ -1,0 +1,41 @@
+include irvine32.inc
+.data
+	number DWORD ?
+	number1 DWORD ?
+	number2 DWORD ?
+	string1 BYTE "Enter three integer : ",0
+.code
+main proc
+	MOV eax,0
+	MOV ecx,0
+	MOV edx, offset string1
+	call writestring
+	call crlf
+	call readint	
+	MOV number,eax
+	call readint
+	MOV number1,eax
+	call readint
+	MOV number2,eax
+	push number
+	push number1
+	push number2
+	call ThreeProd
+exit
+main endp
+
+ThreeProd proc
+	push ebp
+	MOV ebp,esp
+	MOV ecx,[ebp+8]
+	MOV eax,[ebp+12]
+	mul ecx
+	MOV ecx,[ebp+16]
+	mul ecx	
+	call crlf
+	call writedec
+	call crlf
+	pop ebp
+	ret 12
+ThreeProd endp
+end main

@@ -1,0 +1,62 @@
+INCLUDE Irvine32.inc
+.data
+	arr DWORD 3 dup(3 dup(0))
+	l BYTE "LOOSE",0
+	w BYTE "WIN",0
+.code
+main PROC
+	mov esi,OFFSET arr
+	mov ecx,LENGTHOF arr
+
+l1:
+	call readint
+	mov [esi],eax
+	add esi,TYPE arr
+loop l1
+
+
+	mov ecx,3
+	mov esi,OFFSET arr
+l2:
+	push ecx
+	mov ecx,2
+	l3:
+		mov eax,[esi]
+		add eax,1
+		cmp eax,[esi+4]
+		je loss
+		add esi,TYPE arr
+	loop l3
+	add esi,TYPE arr
+	pop ecx
+loop l2
+	
+	
+	mov ecx,3
+	mov esi,OFFSET arr
+l4:
+	push ecx
+	mov ecx,2
+	l5:
+		mov eax,[esi]
+		add eax,1
+		cmp eax,[esi+12]
+		je loss
+		add esi,TYPE arr
+	loop l5
+	add esi,TYPE arr
+	pop ecx
+loop l4
+jmp win
+
+loss: 
+	mov edx,OFFSET l
+	jmp common
+win:
+	mov edx,OFFSET w
+common:
+	call writestring
+	call crlf
+exit
+main endp
+END main

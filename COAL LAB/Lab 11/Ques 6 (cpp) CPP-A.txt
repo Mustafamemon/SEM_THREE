@@ -1,0 +1,39 @@
+// CODING1.cpp : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+using namespace std;
+extern "C"
+{
+	void asmPROC(int []);
+	void Display(int []);
+}
+int main()
+{
+	int array1[10]={0};
+	cout<<"Enter the Number Number : " ;
+	for(int i=0;i<10;i++)
+	cin>>array1[i];
+	cout<<"\nBefore Sort : "; 
+	for(int i=0;i<10;i++)
+	cout<<array1[i]<<" " ;
+	for(int i=0;i<10;i++)
+	{
+		for(int j=0;j<9;j++)
+		{
+			if(array1[j]>array1[j+1])
+			{
+				int temp=array1[j];
+				array1[j]=array1[j+1];
+				array1[j+1]=temp;
+			}
+		}
+	}
+	asmPROC(array1);
+}
+void Display(int array1[])
+{
+	cout<<"\nAfter Sort : ";
+	for(int i=0;i<10;i++)
+	cout<<array1[i]<<" " ;
+}

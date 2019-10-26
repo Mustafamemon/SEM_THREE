@@ -1,0 +1,23 @@
+Title Lab_6
+INCLUDE Irvine32.inc
+
+.data
+
+.code
+main PROC
+	call readint
+	mov ecx,0
+	mov ebx,1
+	mov edx,3
+	l1:
+		add ebx,edx
+		add edx,2
+		INC ecx
+	CMP ebx,eax	
+	JLE l1
+	mov eax,ecx
+	call writedec
+	call crlf
+exit
+main ENDP
+END main

@@ -1,0 +1,55 @@
+TITLE My First Program
+
+INCLUDE Irvine32.inc
+.data
+	KEY BYTE -2,4,1,0,-3,5,2,-4,-4,6
+	count BYTE 0
+	text BYTE "This plaintext message will be encrypted.",0
+.code
+main PROC
+	mov eax,0
+	mov ecx,0
+	mov edi,LENGTHOF KEY
+	mov ebx,LENGTHOF text
+	mov edx,OFFSET text
+	call writestring
+	call crlf
+	mov edx,OFFSET KEY
+	mov esi,OFFSET text
+l1:
+	mov cl,0
+	mov al,[esi]
+	cmp al,' '
+	je space1
+	mov cl,[edx]
+space1:	
+	cmp cl,0
+	jl left
+	ror al,cl
+	jmp right
+left:
+	rol al,cl
+right:
+	mov [esi],al
+	DEC edi
+	cmp edi,0
+	jne common
+	mov edx,OFFSET KEY
+common:
+	INC esi
+	mov al,[esi]
+	cmp al,' '
+	je space
+	INC edx
+space:
+	DEC ebx
+	cmp ebx,0
+	jne l1
+
+call crlf
+mov edx,OFFSET text
+call writestring
+
+exit
+main ENDP
+END main

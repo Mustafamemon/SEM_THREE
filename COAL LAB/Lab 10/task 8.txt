@@ -1,0 +1,36 @@
+INCLUDE Irvine32.inc
+
+.data
+	target BYTE "AAEBDCFBBC",0 
+	freqTable DWORD 256 DUP(0)
+.code
+Get_frequency PROC,
+	A:DWORD , B:DWORD
+	mov edi,B
+	mov esi,A
+	mov ecx,255
+	mov eax,0
+	cld
+l1:
+	lodsb
+	mov edi,A
+	add edi,eax
+	INC BYTE PTR [edi]
+loop l1
+ret
+Get_frequency ENDP
+main PROC
+	INVOKE Get_frequency,ADDR target, ADDR freqTable
+	mov edi,OFFSET freqTable
+	mov ecx,256
+	mov eax,0
+l2:
+	mov al,[edi]
+	call writedec
+	mov al,' '
+	call writechar
+	INC edi
+loop l2
+exit
+main endp
+end main

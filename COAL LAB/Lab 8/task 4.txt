@@ -1,0 +1,13 @@
+TITLE My First Program
+INCLUDE Irvine32.inc
+.code
+	val SBYTE -128
+main PROC
+	mov eax,0
+	movsx ax,val
+	rol eax,16
+	sar eax,16
+	call writeint
+exit
+main ENDP
+END main

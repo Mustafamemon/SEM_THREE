@@ -1,0 +1,30 @@
+.data
+	val: .word  0x12345678
+	A: .half 0
+	B: .byte 0
+	C: .byte 0
+	D: .half 0
+.text
+	main:
+		li $t2,0
+		li $t1,0
+		lw $t1,val
+		
+		and  $t2,$t1,0xfff
+		sh $t2,A
+		
+		srl $t1,$t1,12
+		and  $t2,$t1,0x7
+		sb $t2,B
+		
+		srl $t1,$t1,3
+		and  $t2,$t1,0x1
+		sb $t2,C
+		
+		srl $t1,$t1,1
+		sh $t1,D
+		li $v0,34
+		lh $t2,D
+	 	move $a0,$t2
+	 	syscall
+	 end:

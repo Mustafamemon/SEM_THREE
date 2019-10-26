@@ -1,0 +1,13 @@
+
+.686
+.MODEL FLAT,C
+.STACK 2048
+Display PROTO C,t1:DWORD
+.data
+	
+.code
+asmPROC PROC,t1:DWORD
+	invoke Display,t1
+ret
+asmPROC ENDP
+END

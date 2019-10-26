@@ -1,0 +1,85 @@
+include irvine32.inc
+.data
+	array WORD 4 dup(?)
+	MSG BYTE "Enter  numbers :",0
+	MSG1 BYTE "All Numbers Are Not Prime Number ",0
+	MSG2 BYTE "Largest Prime Number Is : ",0
+.code
+main proc
+	MOV eax,0	
+	MOV ebx,0
+	MOV ecx,0
+	MOV edx,0
+	MOV edx,offset MSG
+	CALL writestring
+	CALL crlf
+	MOV esi,offset array
+	mov ecx,4
+l1:
+	CALL readdec
+	MOV [esi],ax
+	ADD esi,TYPE array
+loop l1
+	MOV esi,offset array
+	mov ecx,4
+
+lo1:
+	CALL checkprime
+	cmp bx,[esi]
+	jge l
+	jmp exi
+l:
+	ADD esi,TYPE array
+loop lo1
+jmp exi1
+exi:
+	mov edx,OFFSET MSG1
+	call writestring
+	jmp exi2
+exi1:
+	push OFFSET array
+	CALL Largest_Prime
+exi2:
+exit
+main endp
+
+
+checkprime proc
+	MOV bx,2
+	l2:
+		cmp bx,[esi]
+		jae l3
+		MOV edx,0
+		MOV ax,[esi]
+		div bx
+		cmp dx,0
+		je l3
+		
+		INC bx
+	jmp l2
+l3:
+ret
+checkprime endp
+Largest_Prime Proc
+	push ebp
+	mov ebp,esp
+	mov esi,[ebp+8]
+	add esi,TYPE [ebp+8]
+	mov eax,0
+	mov ecx,4
+lo2:
+	cmp ax,[esi]
+	jge le1
+	mov ax,[esi]
+le1:
+	ADD esi,TYPE array
+loop lo2
+	mov edx,OFFSET MSG2
+	call writestring
+	call writedec
+	call crlf
+	mov esp,ebp
+	pop ebp
+ret
+Largest_Prime endp
+end main

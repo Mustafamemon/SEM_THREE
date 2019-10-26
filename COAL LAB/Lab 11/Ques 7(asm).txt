@@ -1,0 +1,20 @@
+
+.686
+.MODEL FLAT,C
+.STACK 2048
+.data
+	
+.code
+asmPROC PROC,t1:DWORD
+	mov eax,1
+	mov ebx,1
+	mov ecx,t1
+l1:
+	mul ebx
+	mov ebx,eax
+	mov eax,ecx
+loop l1
+	mov eax,ebx
+ret
+asmPROC ENDP
+END

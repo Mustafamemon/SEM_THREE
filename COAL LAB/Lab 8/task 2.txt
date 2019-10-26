@@ -1,0 +1,26 @@
+TITLE My First Program
+INCLUDE Irvine32.inc
+.code
+	var4 SDWORD ?
+	var2 SDWORD ?
+	var1 SDWORD ?
+main PROC
+	mov eax,0
+	mov ebx,1
+	call readint
+	mov ebx,eax
+	cdq
+	call readint
+	xchg eax,ebx
+	idiv ebx
+	push edx
+	cdq
+	call readint
+	xchg eax,ebx
+	idiv ebx
+	pop edx
+	imul edx
+	call writeint
+exit
+main ENDP
+END main

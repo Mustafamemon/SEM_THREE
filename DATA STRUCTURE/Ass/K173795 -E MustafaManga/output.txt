@@ -1,0 +1,32 @@
+Number of customers : 200
+
+Avg Service Time : 1100->5.5
+
+No of Customer at 1 hour : 40
+Avg Waiting time at 1 hour : 716->40->17.9
+
+No of Customer at 2 hour : 68
+Avg Waiting time at 2 hour : 3666->68->53.9
+
+No of Customer at 3 hour : 80
+Avg Waiting time at 3 hour : 8450->80->106
+
+No of Customer at 4 hour : 51
+Avg Waiting time at 4 hour : 15641->51->307
+
+No of Customer at 5 hour : 42
+Avg Waiting time at 5 hour : 4876->42->116
+
+No of Customer at 6 hour : 53
+Avg Waiting time at 6 hour : 17285->53->326
+
+No of Customer at 7 hour : 30
+Avg Waiting time at 7 hour : 11596->30->387
+
+No of Customer at 8 hour : 17
+Avg Waiting time at 8 hour : 6917->17->407
+
+No of Customer at 9 hour : 8
+Avg Waiting time at 9 hour : 3603->8->450
+
+Busy Hour :9->Avg Waiting time :450

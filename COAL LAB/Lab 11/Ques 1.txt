@@ -1,0 +1,25 @@
+// CODING1.cpp : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int a,b;
+	cout<<"Enter 1st Number : ";
+	cin>>a;
+	cout<<"Enter 2nd Number : ";
+	cin>>b;
+	cout<<a;
+	__asm
+	{
+		mov eax,a
+		mov ebx,b
+		OR eax,ebx
+		mov a,eax
+	}
+	cout<<" & "<<b<<" : "<<a<<endl;
+	return 0;
+
+}

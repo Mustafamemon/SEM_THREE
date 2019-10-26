@@ -1,0 +1,29 @@
+INCLUDE Irvine32.inc
+
+.data
+	string1 BYTE "MUSTAFA",0
+	string2 BYTE "MUSTAFA",0
+	msg BYTE "EQUAL",0
+	msg1 BYTE "NOT-",0
+.code
+main PROC
+	push OFFSET string1
+	push OFFSET string2
+	call isCompare
+exit
+main endp
+isCompare PROC
+	push ebp
+	mov ebp,esp
+	INVOKE Str_compare,[ebp+8],[ebp+12]
+	jz quit
+	mov edx,OFFSET msg1
+	call writestring
+quit:
+	mov edx,OFFSET msg
+	call writestring
+	mov esp,ebp
+	pop ebp
+ret
+isCompare endp
+end main

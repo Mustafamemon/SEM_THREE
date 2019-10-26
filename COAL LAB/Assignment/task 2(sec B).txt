@@ -1,0 +1,52 @@
+INCLUDE irvine32.inc
+.data
+	msg BYTE "ENTER THE CHARACTER : ",0
+	msg1 BYTE "COUNT : ",0 
+.code
+main PROC
+	mov edx,OFFSET msg
+	call writestring
+	mov eax,0
+	mov ecx,24
+l1:
+	mov eax,0
+	call readchar
+	call writechar
+M:
+	cmp ecx,0
+	jl OUT1
+	cmp al,'M'
+	jne endd
+	DEC ecx
+	call readchar
+	call writechar
+	cmp al,'A'
+	jne M
+	DEC ecx
+	call readchar
+	call writechar
+	cmp al,'S'
+	jne M
+	DEC ecx
+	call readchar
+	call writechar
+	cmp al,'A'
+	jne M
+	DEC ecx
+	call readchar
+	call writechar
+	cmp al,'M'
+	jne endd
+	JMP OUT1
+endd:
+loop l1
+OUT1:
+	call crlf
+	mov edx,OFFSET msg1
+	call writestring
+	mov eax,25
+	sub eax,ecx
+	call writedec
+exit
+main endp
+end main

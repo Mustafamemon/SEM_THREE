@@ -1,0 +1,41 @@
+Title Lab_6
+INCLUDE Irvine32.inc
+
+.data
+	string BYTE ";a';123@MUSTafa",0
+
+.code
+main PROC
+	mov edx,OFFSET string
+	call writestring
+	call crlf
+	mov ecx,LENGTHOF string
+	mov esi,OFFSET string
+	mov eax,0
+l1:
+	mov al,BYTE PTR [esi]
+	CMP BYTE PTR[esi],'A'
+	jl i
+	
+	CMP BYTE PTR[esi],'Z'
+	jle comon1
+	
+	CMP BYTE PTR[esi],'z'
+	jg i
+	CMP BYTE PTR[esi],'a'
+	jge comon
+	
+	comon:
+		AND BYTE PTR[esi],95
+		jmp i
+	comon1:
+		OR BYTE PTR [esi],32
+	i:	
+		inc esi
+loop l1
+
+mov edx,OFFSET string
+call writestring
+exit
+main ENDP
+END main

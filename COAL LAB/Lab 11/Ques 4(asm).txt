@@ -1,0 +1,26 @@
+
+.686
+.MODEL FLAT,C
+.STACK 2048
+
+.data
+	
+.code
+asmPROC proc ,num1:DWORD,num2:DWORD,num3:DWORD
+	
+	mov eax,num1
+
+	cmp eax,num2
+	jl comon	
+	mov eax,num2
+comon:	
+	cmp eax,num3
+	jl less
+	mov eax,num3
+	jl less
+
+	
+less:
+ret 
+asmPROC ENDP
+END

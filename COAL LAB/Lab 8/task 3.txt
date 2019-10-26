@@ -1,0 +1,33 @@
+TITLE My First Program
+INCLUDE Irvine32.inc
+.code
+	
+main PROC
+	call readint
+	mov ebx,eax
+	mov ecx,0
+	mov edx,16
+	mov eax,1
+	mov esi,0
+l1:	shl eax,1
+	INC cl
+	cmp edx,eax
+	jae l1
+	cmp edx,eax
+	je l2
+	shr eax,1
+	DEC cl
+l2: push ebx
+	shl ebx,cl
+	add esi,ebx
+	pop ebx
+	mov ecx,0
+	sub edx,eax
+	mov eax,1
+	cmp edx,0
+	ja l1
+	mov eax,esi
+	call writedec
+exit
+main ENDP
+END main

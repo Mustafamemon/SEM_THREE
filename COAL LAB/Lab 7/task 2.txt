@@ -1,0 +1,23 @@
+Title Lab_6
+INCLUDE Irvine32.inc
+
+.data
+	intArr	SWORD	9, 0, 0, 0, 1, 20, 35, -12, 66, 4, 0
+.code
+main PROC
+	mov ecx,LENGTHOF intArr
+	mov esi,0
+	l1:
+		CMP intArr[esi],0
+		JNE common
+		add esi,TYPE SWORD
+		
+	loop l1
+common:
+	mov eax,0
+	mov ax,intArr[esi]
+	call writedec
+	call crlf
+exit
+main ENDP
+END main

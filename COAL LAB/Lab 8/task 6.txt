@@ -1,0 +1,49 @@
+TITLE My First Program
+INCLUDE Irvine32.inc
+.code
+	string1 BYTE "ENTER AN INTEGER TEST SCORE BETWEEN 0 TO 100 : ",0
+	string2 BYTE "GRADE : ",0
+	string3 BYTE "WRONG INPUT",0
+	
+main PROC
+	mov edx,OFFSET string1
+	call writestring
+	call readint
+	call crlf
+	mov edx,OFFSET string2
+	call writestring
+	cmp eax,100
+	jg common1
+	cmp eax,0
+	jl common1
+	cmp eax,90
+	jl b
+	a:mov eax,0
+	  mov al,'A'
+	jmp common	
+	cmp eax,80
+	jl c1
+	b:mov eax,0
+	  mov al,'B'
+	jmp common
+	cmp eax,70
+	jl d
+	c1:mov eax,0
+	  mov al,'C'
+		
+	jmp common
+	cmp eax,60
+	jl f
+	d:mov eax,0
+	  mov al,'D'
+	jmp common
+	f:mov eax,0
+	  mov al,'F'
+common1:mov edx,OFFSET string3
+	call writestring
+	mov eax,0
+	mov al,'!'
+common:	call writechar
+exit
+main ENDP
+END main

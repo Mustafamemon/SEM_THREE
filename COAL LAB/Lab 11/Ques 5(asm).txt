@@ -1,0 +1,18 @@
+
+.686
+.MODEL FLAT,C
+.STACK 2048
+
+.data
+	
+.code
+asmPROC proc ,num1:DWORD,num2:DWORD
+	
+	mov eax,num1
+	cmp eax,num2
+	jge greater	
+	mov eax,num2
+greater:
+ret 
+asmPROC ENDP
+END

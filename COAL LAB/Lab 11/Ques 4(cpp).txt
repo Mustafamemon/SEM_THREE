@@ -1,0 +1,20 @@
+// CODING1.cpp : Defines the entry point for the console application.
+//
+#include "stdafx.h"
+#include <iostream>
+using namespace std;
+extern "C"
+{
+	int asmPROC(int,int,int);
+}
+int main()
+{
+	int num1,num2,num3;
+	cout<<"Enter the first Number : " ;
+	cin>>num1;
+	cout<<"Enter the second Number : " ;
+	cin>>num2;
+	cout<<"Enter the third Number : " ;
+	cin>>num3;
+	cout<<"\nSmallest of three : "<<asmPROC(num1,num2,num3)<<endl;
+}

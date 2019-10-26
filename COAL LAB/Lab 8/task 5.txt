@@ -1,0 +1,31 @@
+include irvine32.inc
+
+.data
+	
+.code
+main PROC
+	mov edx,8h
+	mov eax,3h
+	push eax
+	push edx
+	call Extended_Sbb
+	pop eax
+	pop edx
+	
+exit
+main endp
+Extended_Sbb PROC
+	push ebp
+	mov ebp,esp
+	mov eax,[ebp+12]
+	mov edx,[ebp+8]
+	sub eax,4h
+	sbb edx,0h
+	call writehex
+	call crlf
+	mov eax,edx
+	call writehex
+	pop ebp
+ret 8
+Extended_Sbb endp
+end main
