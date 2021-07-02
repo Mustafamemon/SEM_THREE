@@ -7,11 +7,11 @@ void Heapify(int array[], int i, int n)
  	int largest,temp;
   	int left=2*i;
   	int right=(2*i+1);
-  	if((left<=n)&&array[left]>array[i])
+  	if((left<=n)&&array[left]<array[i])
   		largest=left;
   	else
   		largest=i;
-  	if((right<=n)&&(array[right]>array[largest]))
+  	if((right<=n)&&(array[right]<array[largest]))
   		largest=right;
   	if(largest!=i)
     {
@@ -51,12 +51,28 @@ int main()
   	for (int i = 1; i <= n; i++)
   	{
       	cin>>array[i];
+		
     }
-  	Heapsort(array, n);
+    
+//  	Heapsort(array, n);
   	cout<<"SORTED\n";
-  	for (int i = 1; i <= n; i++)
+  	for (int i = 1; i <=n; i++)
   	{
-    	cout<<array[i]<<endl;
+  		int *a=new int [i];
+  		for (int j = 1 ; j<=i ; j++){
+  				a[j] = array[j];
+		  }
+  		Heapify(a,  0, i)
+
+  		;for(int j = 1 ; j<=i ; j++){
+    		cout<<array[j]<<" ";
+    	}
+    	cout<<endl;
+  		for(int j = 1 ; j<=i ; j++){
+    		cout<<a[j]<<" ";
+    	}
+    	cout<<endl;
+    	delete a;
     }
 }
 

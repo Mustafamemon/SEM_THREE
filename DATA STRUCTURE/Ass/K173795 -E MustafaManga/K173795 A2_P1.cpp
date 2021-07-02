@@ -319,7 +319,7 @@ int main()
 	fstream fin;
 	fin.open("output.txt",ios::out);
 	fin.close();
-	fin.open("input.txt", ios::in); 
+	fin.open("A2P1-in-01.txt", ios::in); 
 	if (fin.is_open())
 	{
 		int m , n ;
